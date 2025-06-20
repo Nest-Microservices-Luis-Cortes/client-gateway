@@ -16,6 +16,10 @@ export class ProductsController {
     return this.client.send(
       { cmd: 'create_product' },
       createProductDto,
+    ).pipe(
+      catchError((err) => {
+        throw new RpcException(err);
+      }),
     );
   }
 
@@ -24,6 +28,10 @@ export class ProductsController {
     return this.client.send(
       { cmd: 'find_all_products' },
       paginationDto,
+    ).pipe(
+      catchError((err) => {
+        throw new RpcException(err);
+      }),
     );
   }
 
